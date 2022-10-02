@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
         setState(() {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(builder: (context) => HomeScreen()),
             (Route<dynamic> route) => false,
           );
         });
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              "Splash Screen",
+              "E-Commerce App",
               style: TextStyle(fontSize: 30),
             ),
             Text(

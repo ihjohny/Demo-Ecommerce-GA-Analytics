@@ -1,3 +1,4 @@
+import 'package:demo/app.dart';
 import 'package:demo/screen/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +12,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Demo Ecommerce',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return AppInheritedWidget(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Demo Ecommerce',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: SplashScreen(),
       ),
-      home: SplashScreen(),
     );
   }
 }

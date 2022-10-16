@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:demo/screen/home.dart';
+import 'package:demo/screen/login.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
         setState(() {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
+            MaterialPageRoute(builder: (context) => LoginScreen()),
             (Route<dynamic> route) => false,
           );
         });

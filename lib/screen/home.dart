@@ -13,11 +13,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final locationController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     FirebaseAnalytics.instance.logScreenView(screenName: "Home Screen");
+  }
+
+  @override
+  void dispose() {
+    locationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -27,6 +34,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.location_on_outlined),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Expanded(
+                    child: AlertDialog(
+                      title: const Text('Location'),
+                      content: TextField(
+                        controller: locationController,
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: 'Address',
+                        ),
+                      ),
+                      actions: [
+                        MaterialButton(
+                          textColor: Colors.blueAccent,
+                          onPressed: () {
+                            Navigator.pop(context, true);
+                          },
+                          child: const Text('Submit'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
           title: const Text(
             "E-Commerce",
             style: TextStyle(

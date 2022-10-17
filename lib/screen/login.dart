@@ -81,20 +81,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
-                    debugPrint("email ${emailController.text}");
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                      (Route<dynamic> route) => false,
-                    );
+                    if (emailController.text.isNotEmpty) {
+                      FirebaseAnalytics.instance.logLogin(loginMethod: "email");
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (Route<dynamic> route) => false,
+                      );
+                    }
                   },
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  FirebaseAnalytics.instance.logLogin(loginMethod: "guest");
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
                 child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(color: Colors.grey[600]),
+                  'Guest User',
+                  style: TextStyle(color: Colors.grey[600], fontSize: 18),
                 ),
               ),
             ],

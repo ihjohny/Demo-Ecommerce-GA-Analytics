@@ -1,5 +1,6 @@
 import 'package:demo/data/item_repo.dart';
 import 'package:demo/screen/home.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '../app.dart';
@@ -12,6 +13,13 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: "Cart Screen");
+  }
+
   @override
   Widget build(BuildContext context) {
     final mItemList = context

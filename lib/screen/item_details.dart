@@ -1,4 +1,5 @@
 import 'package:customizable_counter/customizable_counter.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '../data/item.dart';
@@ -14,6 +15,12 @@ class ItemDetailsScreen extends StatefulWidget {
 }
 
 class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: "Item Details Screen");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

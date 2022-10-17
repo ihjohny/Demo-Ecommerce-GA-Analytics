@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:demo/screen/login.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,6 +17,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: "Splash Screen");
+
     Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         widget.count--;

@@ -2,6 +2,7 @@ import 'package:demo/app.dart';
 import 'package:demo/components/item_card.dart';
 import 'package:demo/screen/cart.dart';
 import 'package:demo/screen/item_details.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,6 +13,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAnalytics.instance.logScreenView(screenName: "Home Screen");
+  }
+
   @override
   Widget build(BuildContext context) {
     final mItemList =

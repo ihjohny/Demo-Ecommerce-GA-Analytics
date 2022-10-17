@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           leading: IconButton(
             icon: const Icon(Icons.location_on_outlined),
             onPressed: () {
+              FirebaseAnalytics.instance.logEvent(name: "click_address_icon");
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -54,7 +55,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         MaterialButton(
                           textColor: Colors.blueAccent,
                           onPressed: () {
-                            Navigator.pop(context, true);
+                            if (locationController.text.isNotEmpty) {
+                              FirebaseAnalytics.instance.logEvent(
+                                name: "change_address",
+                                parameters: {"input": locationController.text},
+                              );
+                              Navigator.pop(context, true);
+                            }
                           },
                           child: const Text('Submit'),
                         ),

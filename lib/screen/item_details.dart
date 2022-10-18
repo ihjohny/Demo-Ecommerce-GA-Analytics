@@ -18,7 +18,20 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   @override
   void initState() {
     super.initState();
+
     FirebaseAnalytics.instance.logScreenView(screenName: "Item Details Screen");
+    FirebaseAnalytics.instance.logViewItem(
+      currency: "BDT",
+      value: widget.mItem.price,
+      items: [
+        AnalyticsEventItem(
+          itemId: widget.mItem.id,
+          itemName: widget.mItem.name,
+          price: widget.mItem.price,
+          currency: "BDT",
+        ),
+      ],
+    );
   }
 
   @override

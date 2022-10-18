@@ -109,6 +109,36 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                             Icons.remove,
                             color: Colors.white,
                           ),
+                          onIncrement: (count) {
+                            FirebaseAnalytics.instance.logAddToCart(
+                              currency: "BDT",
+                              value: widget.mItem.price,
+                              items: [
+                                AnalyticsEventItem(
+                                  itemId: widget.mItem.id,
+                                  itemName: widget.mItem.name,
+                                  price: widget.mItem.price,
+                                  currency: "BDT",
+                                  quantity: 1,
+                                ),
+                              ],
+                            );
+                          },
+                          onDecrement: (count) {
+                            FirebaseAnalytics.instance.logRemoveFromCart(
+                              currency: "BDT",
+                              value: widget.mItem.price,
+                              items: [
+                                AnalyticsEventItem(
+                                  itemId: widget.mItem.id,
+                                  itemName: widget.mItem.name,
+                                  price: widget.mItem.price,
+                                  currency: "BDT",
+                                  quantity: 1,
+                                ),
+                              ],
+                            );
+                          },
                           onCountChange: (count) {
                             widget.mItem.cartQuantity = count.toInt();
                           }),

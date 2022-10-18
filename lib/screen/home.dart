@@ -34,7 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final analyticsItemList = mItemList
         .map((e) => AnalyticsEventItem(
-            itemId: e.id, itemName: e.name, price: e.price, currency: "BDT"))
+              itemId: e.id,
+              itemName: e.name,
+              price: e.price,
+              currency: "BDT",
+            ))
         .toList();
 
     FirebaseAnalytics.instance.logViewItemList(
@@ -108,6 +112,18 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, index) => ItemCard(
               item: mItemList[index],
               onClick: (item) {
+                FirebaseAnalytics.instance.logSelectItem(
+                  itemListId: "1",
+                  itemListName: "available products",
+                  items: [
+                    AnalyticsEventItem(
+                      itemId: item.id,
+                      itemName: item.name,
+                      price: item.price,
+                      currency: "BDT",
+                    ),
+                  ],
+                );
                 Navigator.push(
                   context,
                   MaterialPageRoute(

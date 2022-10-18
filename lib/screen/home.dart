@@ -75,6 +75,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 name: "change_address",
                                 parameters: {"input": locationController.text},
                               );
+
+                              FirebaseAnalytics.instance.setUserProperty(
+                                name: 'user_area',
+                                value: locationController.text,
+                              );
+
                               Navigator.pop(context, true);
                             }
                           },

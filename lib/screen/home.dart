@@ -32,6 +32,17 @@ class _HomeScreenState extends State<HomeScreen> {
     final mItemList =
         context.dependOnInheritedWidgetOfExactType<AppInheritedWidget>()!.items;
 
+    final analyticsItemList = mItemList
+        .map((e) => AnalyticsEventItem(
+            itemId: e.id, itemName: e.name, price: e.price, currency: "BDT"))
+        .toList();
+
+    FirebaseAnalytics.instance.logViewItemList(
+      itemListId: "1",
+      itemListName: "available products",
+      items: analyticsItemList,
+    );
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(

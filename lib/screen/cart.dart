@@ -33,6 +33,24 @@ class _CartScreenState extends State<CartScreen> {
       totalCartValue += (element.cartQuantity * element.price);
     }
 
+    final analyticsCartItemList = mItemList
+        .map(
+          (e) => AnalyticsEventItem(
+            itemId: e.id,
+            itemName: e.name,
+            price: e.price,
+            currency: "BDT",
+            quantity: e.cartQuantity,
+          ),
+        )
+        .toList();
+
+    FirebaseAnalytics.instance.logViewCart(
+      currency: "BDT",
+      value: totalCartValue,
+      items: analyticsCartItemList,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(

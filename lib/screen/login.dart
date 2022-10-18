@@ -83,6 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     if (emailController.text.isNotEmpty) {
                       FirebaseAnalytics.instance.logLogin(loginMethod: "email");
+                      FirebaseAnalytics.instance.setUserProperty(
+                        name: 'user_email',
+                        value: emailController.text,
+                      );
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -95,6 +99,10 @@ class _LoginScreenState extends State<LoginScreen> {
               TextButton(
                 onPressed: () {
                   FirebaseAnalytics.instance.logLogin(loginMethod: "guest");
+                  FirebaseAnalytics.instance.setUserProperty(
+                    name: 'user_email',
+                    value: 'guest',
+                  );
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => HomeScreen()),

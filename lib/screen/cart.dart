@@ -13,7 +13,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -120,6 +119,12 @@ class _CartScreenState extends State<CartScreen> {
                             color: Colors.blueAccent,
                             textColor: Colors.white,
                             onPressed: () {
+                              FirebaseAnalytics.instance.logBeginCheckout(
+                                currency: "BDT",
+                                value: totalCartValue,
+                                items: analyticsCartItemList,
+                              );
+
                               showDialog(
                                 barrierDismissible: false,
                                 context: context,
@@ -133,6 +138,12 @@ class _CartScreenState extends State<CartScreen> {
                                         MaterialButton(
                                           textColor: Colors.black,
                                           onPressed: () {
+                                            FirebaseAnalytics.instance
+                                                .logPurchase(
+                                              currency: "BDT",
+                                              value: totalCartValue,
+                                              items: analyticsCartItemList,
+                                            );
                                             context
                                                 .dependOnInheritedWidgetOfExactType<
                                                     AppInheritedWidget>()!

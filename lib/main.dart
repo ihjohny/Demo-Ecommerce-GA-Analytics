@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:demo/app.dart';
 import 'package:demo/screen/splash.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +18,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    FirebaseAnalytics.instance.setUserId(
+      id: (Random().nextInt(90) + 10).toString()
+    );
     return AppInheritedWidget(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
